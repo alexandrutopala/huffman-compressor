@@ -2,12 +2,17 @@ package compress.implementation;
 
 import compress.Compressor;
 
-class HuffmanTextCompressor<T> implements Compressor<String> {
+import java.util.Map;
 
-    private HuffmanTextDictionary dictionary = new HuffmanTextDictionary();
+class HuffmanTextCompressor implements Compressor<String> {
+
+    private HuffmanTextDictionary dictionaryComputer = new HuffmanTextDictionary();
 
     @Override
     public byte[] compress(String s) {
+        Map<Character, byte[]> dictionary = dictionaryComputer.compute(s);
+
+
         return new byte[0];
     }
 
