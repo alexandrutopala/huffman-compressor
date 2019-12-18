@@ -14,7 +14,7 @@ class HuffmanTextCompressor implements Compressor<String> {
 
 
         return new byte[0];
-    }
+    }b
 
     @Override
     public String decompress(byte[] compressed) {
