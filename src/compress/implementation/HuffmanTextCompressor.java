@@ -52,7 +52,7 @@ class HuffmanTextCompressor implements Compressor<String> {
 
         dictionary.forEach((symbol, bytes) -> {
             buffer.putChar(symbol);
-            buffer.putShort((short) bytes.length);
+            buffer.put((byte) bytes.length);
             buffer.put(bytes);
         });
 
@@ -73,7 +73,7 @@ class HuffmanTextCompressor implements Compressor<String> {
 
     private int computeBufferCapacity(Map<Character, byte[]> dicitonary) {
         return 2 // for total entries count (represented on 2B)
-             + dicitonary.size() * 2 // for byte counter for each symbol (represented on 2B)
+             + dicitonary.size() // for byte counter for each symbol (represented on 1B)
              + dicitonary.size() * 2 // for each encoded symbol (represented on 2B)
              + dicitonary.values().stream().mapToInt(arr -> arr.length).sum(); // for effective encoding byte
     }
@@ -94,7 +94,7 @@ class HuffmanTextCompressor implements Compressor<String> {
 
         for (int i = 0; i < entries; i++) {
             Character symbol = buffer.getChar();
-            short bytesCount = buffer.getShort();
+            byte bytesCount = buffer.get();
 
             byte[] bytes = new byte[bytesCount];
             buffer.get(bytes);
