@@ -1,6 +1,7 @@
 package compress.implementation;
 
 import compress.Compressor;
+import compress.util.Bits;
 import compress.util.ByteArray;
 
 import java.nio.ByteBuffer;
@@ -35,7 +36,9 @@ class HuffmanTextCompressor implements Compressor<String> {
                 .flatMap(Arrays::stream)
                 .toArray(Byte[]::new);
 
-        return Compressor.unwrap(encoded);
+        byte[] unwrapped = Compressor.unwrap(encoded);
+
+        return Bits.encode(unwrapped);
     }
 
     private byte[] encodeDictionary(Map<Character, byte[]> dictionary) {
@@ -63,7 +66,7 @@ class HuffmanTextCompressor implements Compressor<String> {
 
     @Override
     public String decompress(byte[] compressed) {
-        ByteBuffer buffer = ByteBuffer.wrap(compressed).asReadOnlyBuffer();
+        ByteBuffer buffer = ByteBuffer.wrap(compressed);
 
         Map<ByteArray, Character> dictionary = decodeDictionary(buffer);
 
@@ -88,7 +91,9 @@ class HuffmanTextCompressor implements Compressor<String> {
         return dictionary;
     }
 
-    private String decodeMessage(ByteBuffer buffer, Map<ByteArray, Character> dictionary) {
+    private String decodeMessage(ByteBuffer bitBuffer, Map<ByteArray, Character> dictionary) {
+        ByteBuffer buffer = decodeBitEncodedBytes(bitBuffer);
+
         StringBuilder builder = new StringBuilder();
         byte[] encoded = new byte[1];
 
@@ -106,5 +111,17 @@ class HuffmanTextCompressor implements Compressor<String> {
         }
 
         return builder.toString();
+    }
+
+    private ByteBuffer decodeBitEncodedBytes(ByteBuffer bitBuffer) {
+        byte[] bytes = new byte[bitBuffer.remaining()];
+
+        for (int i = 0; i < bytes.length; i++) {
+            bytes[i] = bitBuffer.get();
+        }
+
+        byte[] decoded = Bits.decode(bytes);
+
+        return ByteBuffer.wrap(decoded);
     }
 }
