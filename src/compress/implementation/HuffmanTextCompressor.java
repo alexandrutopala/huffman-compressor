@@ -1,9 +1,11 @@
 package compress.implementation;
 
 import compress.Compressor;
+import compress.util.ByteArray;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 class HuffmanTextCompressor implements Compressor<String> {
@@ -61,6 +63,48 @@ class HuffmanTextCompressor implements Compressor<String> {
 
     @Override
     public String decompress(byte[] compressed) {
-        return null;
+        ByteBuffer buffer = ByteBuffer.wrap(compressed).asReadOnlyBuffer();
+
+        Map<ByteArray, Character> dictionary = decodeDictionary(buffer);
+
+        return decodeMessage(buffer, dictionary);
+    }
+
+    private Map<ByteArray, Character> decodeDictionary(ByteBuffer buffer) {
+        int entries = buffer.getShort();
+
+        Map<ByteArray, Character> dictionary = new HashMap<>(entries);
+
+        for (int i = 0; i < entries; i++) {
+            Character symbol = buffer.getChar();
+            short bytesCount = buffer.getShort();
+
+            byte[] bytes = new byte[bytesCount];
+            buffer.get(bytes);
+
+            dictionary.put(new ByteArray(bytes), symbol);
+        }
+
+        return dictionary;
+    }
+
+    private String decodeMessage(ByteBuffer buffer, Map<ByteArray, Character> dictionary) {
+        StringBuilder builder = new StringBuilder();
+        byte[] encoded = new byte[1];
+
+        while (buffer.hasRemaining()) {
+            encoded[encoded.length - 1] = buffer.get();
+
+            Character symbol = dictionary.get(new ByteArray(encoded));
+
+            if (symbol != null) {
+                builder.append(symbol);
+                encoded = new byte[1];
+            } else {
+                encoded = Arrays.copyOf(encoded, encoded.length + 1);
+            }
+        }
+
+        return builder.toString();
     }
 }
