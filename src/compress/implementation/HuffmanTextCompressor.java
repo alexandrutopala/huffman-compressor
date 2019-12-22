@@ -42,6 +42,8 @@ class HuffmanTextCompressor implements Compressor<String> {
     }
 
     private byte[] encodeDictionary(Map<Character, byte[]> dictionary) {
+        dictionary = bitEncodeDictionaryValues(dictionary);
+
         int capacity = computeBufferCapacity(dictionary);
 
         ByteBuffer buffer = ByteBuffer.allocate(capacity);
@@ -55,6 +57,18 @@ class HuffmanTextCompressor implements Compressor<String> {
         });
 
         return buffer.array();
+    }
+
+    private Map<Character, byte[]> bitEncodeDictionaryValues(Map<Character, byte[]> dictionary) {
+        Map<Character, byte[]> encodedDictionary = new HashMap<>(dictionary.size());
+
+        for (Character key : dictionary.keySet()) {
+            byte[] value = dictionary.get(key);
+
+            encodedDictionary.put(key, Bits.encode(value));
+        }
+
+        return encodedDictionary;
     }
 
     private int computeBufferCapacity(Map<Character, byte[]> dicitonary) {
@@ -85,7 +99,9 @@ class HuffmanTextCompressor implements Compressor<String> {
             byte[] bytes = new byte[bytesCount];
             buffer.get(bytes);
 
-            dictionary.put(new ByteArray(bytes), symbol);
+            byte[] bitDecoded = Bits.decode(bytes);
+
+            dictionary.put(new ByteArray(bitDecoded), symbol);
         }
 
         return dictionary;
