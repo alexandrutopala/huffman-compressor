@@ -10,7 +10,7 @@ public final class Compressors {
 
     public static <T> Compressor<T> get(Type type) {
         switch (type) {
-            case HUFFMAN_TEXT: return new HuffmanTextCompressor();
+            case HUFFMAN_TEXT: //return new HuffmanTextCompressor();
             default: throw new IllegalArgumentException("Not supported");
         }
     }
