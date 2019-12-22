@@ -1,22 +1,20 @@
-import compress.Compressor;
-import compress.implementation.Compressors;
-
-import java.util.Arrays;
+import compress.implementation.HuffmanDictionary;
+import compress.implementation.HuffmanTextDictionary;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        String test = "Ana are mere";
+        HuffmanDictionary dictionary = new HuffmanTextDictionary();
 
-        Compressor<String> compressor = Compressors.getFor(String.class);
+//
+//         Just for testing
+//
+//       Map<Character, byte[]> mapa = dictionary.compute("ana are mere");
+//       mapa.forEach((k,v) -> {
+//           System.out.println(k);
+//           System.out.println(Arrays.toString(v));
+//       } );
 
-        byte[] encoded = compressor.compress(test);
-
-        System.out.println(Arrays.toString(encoded));
-
-        String decoded = compressor.decompress(encoded);
-
-        System.out.println(decoded);
     }
 }
