@@ -85,8 +85,9 @@ public class Main {
 // a crapat la decompress - >  de ce ?
 /*
 output :
+
 decompressFile
-./TESTE/byte1.txt
+./TESTE/byte888.txt
 ./REZULTATE/REZ.txt
 stringCitit este :
 [B@439f5b3d
@@ -97,7 +98,7 @@ Exception in thread "main" java.nio.BufferUnderflowException
 	at compress.implementation.HuffmanTextCompressor.decodeDictionary(HuffmanTextCompressor.java:100)
 	at compress.implementation.HuffmanTextCompressor.decompress(HuffmanTextCompressor.java:85)
 	at compress.implementation.HuffmanTextCompressor.decompress(HuffmanTextCompressor.java:12)
-	at Main.main(Main.java:102)
+	at Main.main(Main.java:128)
 
 Process finished with exit code 1
 
