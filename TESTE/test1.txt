@@ -1,0 +1,3 @@
+test simplu 
+fara simboluri 
+pe mai multe linii

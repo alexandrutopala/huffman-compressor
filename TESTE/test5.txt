@@ -1,0 +1,4 @@
+Acesta este testul 5.
+- Buna Maria ! Ce faci ? Cum este in vacanta ? 
+*Maria raspunde* : - Buna Ana ! Sunt bine. Sunt acasa de sarbatori. Tu ce faci ? 
+- Si eu sunt bine. Multumesc.

@@ -1,0 +1,3 @@
+Acesta este testul 4.
+Testam simboluri : 
+@#$%^&*()_+-|\~`/
