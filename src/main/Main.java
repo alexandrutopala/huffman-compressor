@@ -1,3 +1,5 @@
+package main;
+
 import compress.Compressor;
 import compress.implementation.Compressors;
 
@@ -10,7 +12,7 @@ import java.nio.file.StandardOpenOption;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String... args) throws IOException {
 
         String command = args[0].trim();
         Path src = Paths.get(args[1].trim());
@@ -69,6 +71,6 @@ public class Main {
 
         double ratio = (double) compressed * 100 / decompressed;
 
-        System.out.printf("Compression ration: %.2f%%\n", ratio);
+        System.out.printf("Compression ration: %.2f%%\n\n", ratio);
     }
 }
