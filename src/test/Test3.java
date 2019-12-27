@@ -10,30 +10,30 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class Test1 {
+public class Test3 {
 
     // the content to be compressed
-    private static final String TEST_TEXT = " !"; // TODO: change that
+    private static final String TEST_TEXT = "// Test 3 : cifre :  1234567890"; // TODO: change that
 
     // the file you want to compress
-    private static final String DECOMPRESSED_PATH = "./tests/text1.txt"; // TODO: change that
+    private static final String DECOMPRESSED_PATH = "./tests/text3.txt"; // TODO: change that
 
     // the destination file for the compressed text
-    private static final String COMPRESSED_PATH = "./tests/compressed1.txt"; // TODO: change that
+    private static final String COMPRESSED_PATH = "./tests/compressed3.txt"; // TODO: change that
 
     // the result file with the decompressed text
-    private static final String RESULT_PATH = "./tests/rez1.txt"; // TODO: change that
+    private static final String RESULT_PATH = "./tests/rez3.txt"; // TODO: change that
 
     public static void main(String[] args) throws IOException {
         generateTestFile(DECOMPRESSED_PATH, TEST_TEXT);
 
-        System.out.println("Test 1 : 2 caractere \n");
+        System.out.println("Test 3 \n");
         System.out.println("Operatia care incepe este compresia.");
         long startTime = System.nanoTime();
         Main.main("COMPRESS", DECOMPRESSED_PATH, COMPRESSED_PATH);
         long endTime = System.nanoTime();
         long duration = (endTime - startTime)/1000000;  // milisecunde
-        System.out.print("Compresia a durat : " + duration + " milisecunde.");
+        System.out.println("Compresia a durat : " + duration + " milisecunde.");
         System.out.println("\n");
 
         System.out.println("Operatia care incepe este decompresia");
@@ -77,4 +77,6 @@ public class Test1 {
 
         return new String(byteContent, Charset.forName("UTF-8"));
     }
+
 }
+

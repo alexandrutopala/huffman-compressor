@@ -10,24 +10,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class Test1 {
+public class Test2 {
 
     // the content to be compressed
-    private static final String TEST_TEXT = " !"; // TODO: change that
-
+    private static final String TEST_TEXT = "// Test 2 : simboluri : @#$%^&*()_+=-/|{}[]<> "; // TODO: change that
+        // nu vrea caracterul: \ = Illegal escape character in string literal
     // the file you want to compress
-    private static final String DECOMPRESSED_PATH = "./tests/text1.txt"; // TODO: change that
+    private static final String DECOMPRESSED_PATH = "./tests/text2.txt"; // TODO: change that
 
     // the destination file for the compressed text
-    private static final String COMPRESSED_PATH = "./tests/compressed1.txt"; // TODO: change that
+    private static final String COMPRESSED_PATH = "./tests/compressed2.txt"; // TODO: change that
 
     // the result file with the decompressed text
-    private static final String RESULT_PATH = "./tests/rez1.txt"; // TODO: change that
+    private static final String RESULT_PATH = "./tests/rez2.txt"; // TODO: change that
 
     public static void main(String[] args) throws IOException {
         generateTestFile(DECOMPRESSED_PATH, TEST_TEXT);
 
-        System.out.println("Test 1 : 2 caractere \n");
+        System.out.println("Test 2 \n");
         System.out.println("Operatia care incepe este compresia.");
         long startTime = System.nanoTime();
         Main.main("COMPRESS", DECOMPRESSED_PATH, COMPRESSED_PATH);
@@ -77,4 +77,5 @@ public class Test1 {
 
         return new String(byteContent, Charset.forName("UTF-8"));
     }
+
 }

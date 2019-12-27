@@ -1,0 +1,1 @@
+// Test 5 : diacritice :  Acest program păstrează formatarea textelor introduse. Poate fi folosit cu ușurință și este util tuturor oamenilor. 
