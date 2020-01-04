@@ -10,24 +10,24 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class Test2 {
+public class Test7 {
 
     // the content to be compressed
-    private static final String TEST_TEXT = "// Test 2 : simboluri : @#$%^&*()_+=-/|{}[]<> \\"; // TODO: change that
+    private static final String TEST_TEXT = "// Test 7 : simboluri grecesti - hello : Γειά σου"; // TODO: change that
 
     // the file you want to compress
-    private static final String DECOMPRESSED_PATH = "./tests/text2.txt"; // TODO: change that
+    private static final String DECOMPRESSED_PATH = "./tests/text7.txt"; // TODO: change that
 
     // the destination file for the compressed text
-    private static final String COMPRESSED_PATH = "./tests/compressed2.txt"; // TODO: change that
+    private static final String COMPRESSED_PATH = "./tests/compressed7.txt"; // TODO: change that
 
     // the result file with the decompressed text
-    private static final String RESULT_PATH = "./tests/rez2.txt"; // TODO: change that
+    private static final String RESULT_PATH = "./tests/rez7.txt"; // TODO: change that
 
     public static void main(String[] args) throws IOException {
         generateTestFile(DECOMPRESSED_PATH, TEST_TEXT);
 
-        System.out.println("Test 2 \n");
+        System.out.println("Test 7 \n");
         System.out.println("Operatia care incepe este compresia.");
         long startTime = System.nanoTime();
         Main.main("COMPRESS", DECOMPRESSED_PATH, COMPRESSED_PATH);
@@ -43,7 +43,6 @@ public class Test2 {
         long duration2 = (endTime2 - startTime2)/1000000;  // milisecunde
         System.out.println("Decompresia a durat : " + duration2 + " milisecunde.");
         System.out.println("\n");
-
 
         // Get the Java runtime
         Runtime runtime = Runtime.getRuntime();
