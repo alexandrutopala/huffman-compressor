@@ -1,3 +1,7 @@
-huffman.iml
+*.iml
+
+tests
+
+out
 
 .idea/
